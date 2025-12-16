@@ -1,7 +1,20 @@
 "use client"
 
 import { useState } from "react"
-import { Copy, Check, ChevronDown, ChevronRight, BookOpen, Code, Terminal, Server, Package, Cloud } from "lucide-react"
+import {
+  Copy,
+  Check,
+  ChevronDown,
+  ChevronRight,
+  BookOpen,
+  Code,
+  Terminal,
+  Server,
+  Package,
+  Cloud,
+  Container,
+  Cpu,
+} from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useI18n } from "@/lib/i18n/context"
 
@@ -98,7 +111,7 @@ const PLATFORM_CATEGORIES = [
     ],
   },
   {
-    id: "model-platforms",
+    id: "ai-ml",
     icon: Cloud,
     platforms: [
       {
@@ -122,6 +135,306 @@ const PLATFORM_CATEGORIES = [
           {
             original: "https://civitai.com/api/download/models/128713",
             accelerated: "https://xget.xi-xu.me/civitai/api/download/models/128713",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "container-registries",
+    icon: Container,
+    platforms: [
+      {
+        name: "Docker Hub",
+        prefix: "cr/docker",
+        originalDomain: "registry-1.docker.io",
+        exampleKey: "dockerHub",
+        examples: [
+          {
+            original: "https://registry-1.docker.io/v2/library/nginx/manifests/latest",
+            accelerated: "https://xget.xi-xu.me/cr/docker/v2/nginx/manifests/latest",
+          },
+        ],
+      },
+      {
+        name: "GitHub Container Registry",
+        prefix: "cr/ghcr",
+        originalDomain: "ghcr.io",
+        exampleKey: "ghcr",
+        examples: [
+          {
+            original: "https://ghcr.io/v2/nginxinc/nginx-unprivileged/manifests/latest",
+            accelerated: "https://xget.xi-xu.me/cr/ghcr/v2/nginxinc/nginx-unprivileged/manifests/latest",
+          },
+        ],
+      },
+      {
+        name: "Google Container Registry",
+        prefix: "cr/gcr",
+        originalDomain: "gcr.io",
+        exampleKey: "gcr",
+        examples: [
+          {
+            original: "https://gcr.io/v2/distroless/base/manifests/latest",
+            accelerated: "https://xget.xi-xu.me/cr/gcr/v2/distroless/base/manifests/latest",
+          },
+        ],
+      },
+      {
+        name: "Quay.io",
+        prefix: "cr/quay",
+        originalDomain: "quay.io",
+        exampleKey: "dockerHub",
+        examples: [
+          {
+            original: "https://quay.io/v2/coreos/etcd/manifests/latest",
+            accelerated: "https://xget.xi-xu.me/cr/quay/v2/coreos/etcd/manifests/latest",
+          },
+        ],
+      },
+      {
+        name: "Microsoft Container Registry",
+        prefix: "cr/mcr",
+        originalDomain: "mcr.microsoft.com",
+        exampleKey: "dockerHub",
+        examples: [
+          {
+            original: "https://mcr.microsoft.com/v2/dotnet/runtime/manifests/latest",
+            accelerated: "https://xget.xi-xu.me/cr/mcr/v2/dotnet/runtime/manifests/latest",
+          },
+        ],
+      },
+      {
+        name: "Amazon Public ECR",
+        prefix: "cr/ecr",
+        originalDomain: "public.ecr.aws",
+        exampleKey: "dockerHub",
+        examples: [
+          {
+            original: "https://public.ecr.aws/v2/amazonlinux/amazonlinux/manifests/latest",
+            accelerated: "https://xget.xi-xu.me/cr/ecr/v2/amazonlinux/amazonlinux/manifests/latest",
+          },
+        ],
+      },
+      {
+        name: "GitLab Container Registry",
+        prefix: "cr/gitlab",
+        originalDomain: "registry.gitlab.com",
+        exampleKey: "dockerHub",
+        examples: [
+          {
+            original: "https://registry.gitlab.com/v2/gitlab-org/gitlab-runner/manifests/latest",
+            accelerated: "https://xget.xi-xu.me/cr/gitlab/v2/gitlab-org/gitlab-runner/manifests/latest",
+          },
+        ],
+      },
+      {
+        name: "Red Hat Registry",
+        prefix: "cr/redhat",
+        originalDomain: "registry.redhat.io",
+        exampleKey: "dockerHub",
+        examples: [
+          {
+            original: "https://registry.redhat.io/v2/ubi8/ubi/manifests/latest",
+            accelerated: "https://xget.xi-xu.me/cr/redhat/v2/ubi8/ubi/manifests/latest",
+          },
+        ],
+      },
+      {
+        name: "Kubernetes Registry",
+        prefix: "cr/k8s",
+        originalDomain: "registry.k8s.io",
+        exampleKey: "dockerHub",
+        examples: [
+          {
+            original: "https://registry.k8s.io/v2/pause/manifests/3.9",
+            accelerated: "https://xget.xi-xu.me/cr/k8s/v2/pause/manifests/3.9",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "ai-inference",
+    icon: Cpu,
+    platforms: [
+      {
+        name: "OpenAI",
+        prefix: "ip/openai",
+        originalDomain: "api.openai.com",
+        exampleKey: "openai",
+        examples: [
+          {
+            original: "https://api.openai.com/v1/chat/completions",
+            accelerated: "https://xget.xi-xu.me/ip/openai/v1/chat/completions",
+          },
+        ],
+      },
+      {
+        name: "Anthropic (Claude)",
+        prefix: "ip/anthropic",
+        originalDomain: "api.anthropic.com",
+        exampleKey: "anthropic",
+        examples: [
+          {
+            original: "https://api.anthropic.com/v1/messages",
+            accelerated: "https://xget.xi-xu.me/ip/anthropic/v1/messages",
+          },
+        ],
+      },
+      {
+        name: "Google Gemini",
+        prefix: "ip/gemini",
+        originalDomain: "generativelanguage.googleapis.com",
+        exampleKey: "gemini",
+        examples: [
+          {
+            original: "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
+            accelerated: "https://xget.xi-xu.me/ip/gemini/v1beta/models/gemini-2.5-flash:generateContent",
+          },
+        ],
+      },
+      {
+        name: "Vertex AI",
+        prefix: "ip/vertexai",
+        originalDomain: "aiplatform.googleapis.com",
+        exampleKey: "openai",
+        examples: [
+          {
+            original: "https://aiplatform.googleapis.com/v1/projects/.../locations/.../endpoints/...:predict",
+            accelerated: "https://xget.xi-xu.me/ip/vertexai/v1/projects/.../locations/.../endpoints/...:predict",
+          },
+        ],
+      },
+      {
+        name: "Cohere",
+        prefix: "ip/cohere",
+        originalDomain: "api.cohere.ai",
+        exampleKey: "openai",
+        examples: [
+          {
+            original: "https://api.cohere.ai/v1/chat",
+            accelerated: "https://xget.xi-xu.me/ip/cohere/v1/chat",
+          },
+        ],
+      },
+      {
+        name: "Mistral AI",
+        prefix: "ip/mistralai",
+        originalDomain: "api.mistral.ai",
+        exampleKey: "openai",
+        examples: [
+          {
+            original: "https://api.mistral.ai/v1/chat/completions",
+            accelerated: "https://xget.xi-xu.me/ip/mistralai/v1/chat/completions",
+          },
+        ],
+      },
+      {
+        name: "xAI (Grok)",
+        prefix: "ip/xai",
+        originalDomain: "api.x.ai",
+        exampleKey: "openai",
+        examples: [
+          {
+            original: "https://api.x.ai/v1/chat/completions",
+            accelerated: "https://xget.xi-xu.me/ip/xai/v1/chat/completions",
+          },
+        ],
+      },
+      {
+        name: "Groq",
+        prefix: "ip/groq",
+        originalDomain: "api.groq.com",
+        exampleKey: "openai",
+        examples: [
+          {
+            original: "https://api.groq.com/openai/v1/chat/completions",
+            accelerated: "https://xget.xi-xu.me/ip/groq/openai/v1/chat/completions",
+          },
+        ],
+      },
+      {
+        name: "Perplexity",
+        prefix: "ip/perplexity",
+        originalDomain: "api.perplexity.ai",
+        exampleKey: "openai",
+        examples: [
+          {
+            original: "https://api.perplexity.ai/chat/completions",
+            accelerated: "https://xget.xi-xu.me/ip/perplexity/chat/completions",
+          },
+        ],
+      },
+      {
+        name: "Together AI",
+        prefix: "ip/together",
+        originalDomain: "api.together.xyz",
+        exampleKey: "openai",
+        examples: [
+          {
+            original: "https://api.together.xyz/v1/chat/completions",
+            accelerated: "https://xget.xi-xu.me/ip/together/v1/chat/completions",
+          },
+        ],
+      },
+      {
+        name: "Replicate",
+        prefix: "ip/replicate",
+        originalDomain: "api.replicate.com",
+        exampleKey: "openai",
+        examples: [
+          {
+            original: "https://api.replicate.com/v1/predictions",
+            accelerated: "https://xget.xi-xu.me/ip/replicate/v1/predictions",
+          },
+        ],
+      },
+      {
+        name: "Fireworks AI",
+        prefix: "ip/fireworks",
+        originalDomain: "api.fireworks.ai",
+        exampleKey: "openai",
+        examples: [
+          {
+            original: "https://api.fireworks.ai/inference/v1/chat/completions",
+            accelerated: "https://xget.xi-xu.me/ip/fireworks/inference/v1/chat/completions",
+          },
+        ],
+      },
+      {
+        name: "HuggingFace Inference",
+        prefix: "ip/huggingface",
+        originalDomain: "router.huggingface.co",
+        exampleKey: "openai",
+        examples: [
+          {
+            original: "https://router.huggingface.co/hf-inference/models/openai/whisper-large-v3",
+            accelerated: "https://xget.xi-xu.me/ip/huggingface/hf-inference/models/openai/whisper-large-v3",
+          },
+        ],
+      },
+      {
+        name: "OpenRouter",
+        prefix: "ip/openrouter",
+        originalDomain: "openrouter.ai",
+        exampleKey: "openai",
+        examples: [
+          {
+            original: "https://openrouter.ai/api/v1/chat/completions",
+            accelerated: "https://xget.xi-xu.me/ip/openrouter/api/v1/chat/completions",
+          },
+        ],
+      },
+      {
+        name: "Fal AI",
+        prefix: "ip/falai",
+        originalDomain: "fal.run",
+        exampleKey: "openai",
+        examples: [
+          {
+            original: "https://fal.run/fal-ai/flux/schnell",
+            accelerated: "https://xget.xi-xu.me/ip/falai/fal-ai/flux/schnell",
           },
         ],
       },
@@ -575,7 +888,7 @@ function CopyableCode({ code }: { code: string }) {
         onClick={copy}
         className="h-6 w-6 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity"
       >
-        {copied ? <Check className="h-3 w-3 text-primary" /> : <Copy className="h-3 w-3 text-muted-foreground" />}
+        {copied ? <Check className="h-3 w-3 text-green-500" /> : <Copy className="h-3 w-3" />}
       </Button>
     </div>
   )
